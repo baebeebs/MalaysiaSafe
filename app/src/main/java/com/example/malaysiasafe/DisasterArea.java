@@ -1,5 +1,7 @@
 package com.example.malaysiasafe;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class DisasterArea {
     String name;
     double latitude;
@@ -12,4 +14,9 @@ public class DisasterArea {
         this.longitude = longitude;
         this.disasterType = disasterType;
     }
+
+    public LatLng getLatLng() {
+        return new LatLng(latitude, longitude);
+    }
+
 }

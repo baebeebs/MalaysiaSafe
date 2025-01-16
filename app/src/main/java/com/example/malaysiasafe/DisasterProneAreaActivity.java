@@ -41,6 +41,7 @@ public class DisasterProneAreaActivity extends AppCompatActivity implements OnMa
                 new DisasterArea("Kuala Lumpur", 3.139, 101.6869, "Flood"),
                 new DisasterArea("Penang", 5.4164, 100.3327, "Landslide"),
                 new DisasterArea("Johor Bahru", 1.4927, 103.7414, "Flood"),
+                new DisasterArea("Pekan", 3.4991, 103.3860, "Flood"),
                 new DisasterArea("Kota Kinabalu", 5.9804, 116.0735, "Earthquake")
         );
 
