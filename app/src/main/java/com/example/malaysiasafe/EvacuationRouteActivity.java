@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,16 +21,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.PolyUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EvacuationRouteActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -40,13 +44,7 @@ public class EvacuationRouteActivity extends AppCompatActivity implements OnMapR
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private LatLng currentLocation;
     private LatLng nearestCenter;
-
-    // Example evacuation centers
-    private final LatLng[] evacuationCenters = {
-            new LatLng(3.140, 101.687), // Kuala Lumpur
-            new LatLng(3.160, 101.715), // Petaling Jaya
-            new LatLng(3.529, 103.440)  // Pekan
-    };
+    private final List<LatLng> evacuationCenters = new ArrayList<>(); // Evacuation centers fetched from Firebase
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +74,9 @@ public class EvacuationRouteActivity extends AppCompatActivity implements OnMapR
                 Toast.makeText(EvacuationRouteActivity.this, "Please find your location first", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Fetch evacuation centers from Firebase
+        fetchEvacuationCentersFromFirebase();
     }
 
     @Override
@@ -92,19 +93,65 @@ public class EvacuationRouteActivity extends AppCompatActivity implements OnMapR
         googleMap.setMyLocationEnabled(true);
     }
 
+    private void fetchEvacuationCentersFromFirebase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://malaysiasafe-4daeb-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("EvacuationCentre");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot centerSnapshot : dataSnapshot.getChildren()) {
+                        // Retrieve latitude and longitude as strings and parse to double
+                        String latStr = centerSnapshot.child("Latitude").getValue(String.class);
+                        String lngStr = centerSnapshot.child("Longitude").getValue(String.class);
+
+                        if (latStr != null && lngStr != null) {
+                            try {
+                                double lat = Double.parseDouble(latStr);
+                                double lng = Double.parseDouble(lngStr);
+                                evacuationCenters.add(new LatLng(lat, lng));
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                Toast.makeText(EvacuationRouteActivity.this, "Invalid coordinates format", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    if (!evacuationCenters.isEmpty()) {
+                        Toast.makeText(EvacuationRouteActivity.this, "Evacuation centers loaded successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(EvacuationRouteActivity.this, "No evacuation centers found", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(EvacuationRouteActivity.this, "No evacuation centers found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(EvacuationRouteActivity.this, "Failed to load evacuation centers", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
     private void plotEvacuationRoute() {
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
             if (location != null && googleMap != null) {
                 currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 nearestCenter = findNearestEvacuationCenter(currentLocation);
 
-                // Add markers for current location and evacuation center
-                googleMap.clear();  // Clear previous markers and polylines
-                googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location"));
-                googleMap.addMarker(new MarkerOptions().position(nearestCenter).title("Nearest Evacuation Center"));
+                if (nearestCenter != null) {
+                    // Add markers for current location and evacuation center
+                    googleMap.clear();  // Clear previous markers and polylines
+                    googleMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location"));
+                    googleMap.addMarker(new MarkerOptions().position(nearestCenter).title("Nearest Evacuation Center"));
 
-                // Move camera to current location
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12f));
+                    // Move camera to current location
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12f));
+                } else {
+                    Toast.makeText(EvacuationRouteActivity.this, "No evacuation centers available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

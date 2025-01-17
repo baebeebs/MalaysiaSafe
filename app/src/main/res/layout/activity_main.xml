@@ -15,14 +15,16 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Dashboard Banner -->
+
+        <!-- Profile Section -->
+
         <ImageView
             android:id="@+id/dashboard_banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_dashboard_banner" />
+            android:src="@drawable/dashboard_banner" />
 
-        <!-- Profile Section -->
         <LinearLayout
             android:id="@+id/profile_section"
             android:layout_width="wrap_content"
@@ -31,12 +33,6 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/profile_picture"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_user_profile" />
 
             <TextView
                 android:id="@+id/profile_name"
@@ -123,27 +119,35 @@
                 android:id="@+id/btn_emergency_service"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="emergency service" />
+                android:backgroundTint="#0939EC"
+                android:text="emergency service"
+                android:drawableLeft="@drawable/baseline_call_24"/>
 
             <Button
                 android:id="@+id/btn_community_report"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="#0939EC"
                 android:text="community report"
-                android:layout_gravity="right"/>
+                android:drawableLeft="@drawable/baseline_comment_24"/>
 
             <Button
                 android:id="@+id/btn_safety_info"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="download safety info" />
+                android:backgroundTint="#0939EC"
+                android:text="download safety info"
+                android:drawableLeft="@drawable/baseline_arrow_circle_down_24"/>
 
             <Button
                 android:id="@+id/btn_disaster_area"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="#0939EC"
                 android:text="disaster prone area"
-                android:layout_gravity="right"/>
+                android:drawableLeft="@drawable/baseline_add_location_24"/>
 
         </GridLayout>
 

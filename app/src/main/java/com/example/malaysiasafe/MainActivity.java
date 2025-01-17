@@ -122,19 +122,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
             if (location != null) {
-                boolean isInDangerZone = isLocationNearDisaster(location);
+                DisasterArea nearestDisaster = findNearestDisasterLocation(location);
+                boolean isInDangerZone = nearestDisaster != null;
 
-                // Update UI with both the danger status and the disaster location
-                DisasterArea dangerLocation = null;
-                if (isInDangerZone) {
-                    // You can retrieve the disaster location that triggered the warning
-                    dangerLocation = findNearestDisasterLocation(location);
-                }
-                updateAlertUI(isInDangerZone, dangerLocation); // Pass both parameters
+                // Update the UI with the result
+                updateAlertUI(isInDangerZone, nearestDisaster);
             }
         });
-
     }
+
 
     private boolean isLocationNearDisaster(Location userLocation) {
         for (DisasterArea area : disasterAreas) {
@@ -147,13 +143,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     results
             );
             if (results[0] <= WARNING_RADIUS) {
-                updateAlertUI(true, area); // Pass the disaster area
+                // Return immediately if a nearby disaster is found
                 return true;
             }
         }
-        updateAlertUI(false, null); // Pass null if no disaster zone
         return false;
     }
+
 
     private void updateAlertUI(boolean isInDangerZone, DisasterArea area) {
         TextView floodAlert = findViewById(R.id.flood_alert);
@@ -178,9 +174,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private DisasterArea findNearestDisasterLocation(Location userLocation) {
-        DisasterArea nearestDisaster = null;
-        float[] results = new float[1];
         for (DisasterArea area : disasterAreas) {
+            float[] results = new float[1];
             Location.distanceBetween(
                     userLocation.getLatitude(),
                     userLocation.getLongitude(),
@@ -189,12 +184,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     results
             );
             if (results[0] <= WARNING_RADIUS) {
-                nearestDisaster = area; // This is the closest disaster location
-                break; // Stop searching once we find the nearest disaster location
+                return area; // Return the nearest disaster area if within radius
             }
         }
-        return nearestDisaster;
+        return null; // No disaster area found
     }
+
 
     private float calculateZoomLevel(double radius) {
         double scale = radius / 500; // Adjust scale factor based on map size
