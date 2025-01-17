@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "345700320367",
+    "firebase_url": "https://malaysiasafe-4daeb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "malaysiasafe-4daeb",
+    "storage_bucket": "malaysiasafe-4daeb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345700320367:android:4ab1512cbdb993737af99a",
+        "android_client_info": {
+          "package_name": "com.example.malaysiasafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIHAkp-VF3zL5xPxaj5Dnxcto0aFsWik8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
