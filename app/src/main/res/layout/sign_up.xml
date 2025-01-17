@@ -68,7 +68,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_email_24"
+
                 android:drawablePadding="8dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/blue"
+                android:backgroundTint="#4B7AF1"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textSize="18sp"

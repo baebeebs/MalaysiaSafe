@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MalaysiaSafe"
         tools:targetApi="31">
         <activity
+            android:name=".EvacuationRouteActivity"
+            android:exported="false" />
+        <activity
             android:name=".DisasterProneAreaActivity"
             android:exported="false" />
         <activity
@@ -31,7 +34,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyDDDT9hf_3F7hXwHGEsd8FQOyG-dGFzXEU" />
 
         <activity
             android:name=".MainActivity"

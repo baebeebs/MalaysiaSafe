@@ -52,6 +52,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             mapFragment.getMapAsync(this);
         }
 
+        // Button for Evacuation Route
+        Button btnEvacuationRoute = findViewById(R.id.btn_evacuation_route);
+        btnEvacuationRoute.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EvacuationRouteActivity.class);
+            startActivity(intent);
+        });
+
         // Button for Emergency Service
         Button btnEmergencyService = findViewById(R.id.btn_emergency_service);
         btnEmergencyService.setOnClickListener(v -> {

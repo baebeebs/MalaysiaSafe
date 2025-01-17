@@ -1,7 +1,9 @@
 package com.example.malaysiasafe;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +32,7 @@ public class DisasterProneAreaActivity extends AppCompatActivity implements OnMa
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
+
     }
 
     @Override
@@ -84,4 +87,6 @@ public class DisasterProneAreaActivity extends AppCompatActivity implements OnMa
         int color = getColorForDisaster(disasterType);
         return isFill ? Color.argb(50, Color.red(color), Color.green(color), Color.blue(color)) : color;
     }
+
+
 }

@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/dashboard_banner"
             android:layout_width="match_parent"
-            android:layout_height="174dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_dashboard_banner" />
 
@@ -54,7 +54,7 @@
     <FrameLayout
         android:id="@+id/map_container"
         android:layout_width="0dp"
-        android:layout_height="330dp"
+        android:layout_height="300dp"
         app:layout_constraintTop_toBottomOf="@id/banner_with_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,29 +70,38 @@
     <!-- Alerts Section -->
     <LinearLayout
         android:id="@+id/alerts_section"
-        android:layout_width="0dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
+        android:background="@drawable/rounded_background"
         app:layout_constraintTop_toBottomOf="@id/map_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/flood_alert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="ALERT"
+            android:textColor="#FF0000"
+            android:backgroundTint="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/flood_alert"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="8dp"
-                android:background="@color/black"
-                android:text="flood_alert_text"
-                android:textColor="@color/white"
-                android:gravity="center" />
+
+        <Button
+            android:id="@+id/btn_evacuation_route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#FF0000"
+            android:padding="8dp"
+            android:text="EVACUATION ROUTE"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -107,6 +116,7 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@id/alerts_section"
             android:spacing="8dp">
 
             <Button
@@ -119,7 +129,8 @@
                 android:id="@+id/btn_community_report"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="community report" />
+                android:text="community report"
+                android:layout_gravity="right"/>
 
             <Button
                 android:id="@+id/btn_safety_info"
@@ -131,10 +142,11 @@
                 android:id="@+id/btn_disaster_area"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="disaster prone area" />
+                android:text="disaster prone area"
+                android:layout_gravity="right"/>
 
         </GridLayout>
-    </LinearLayout>]
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
