@@ -1,10 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".SafetyInformationActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+     <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bg"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disaster Information"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp" />
+    </LinearLayout>
+
+
+    <!-- Added TextView for a description or additional information -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Landslide"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
+
+    <!-- Button for downloading the PDF -->
+    <Button
+        android:id="@+id/downloadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Landslide PDF"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heavy Rain"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/heavyRainButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Heavy Rain PDF"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drought"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/droughtButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Drought PDF"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flood"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/floodButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Flood PDF"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Strong Winds"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/windButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Strong Wind PDF"
+        android:layout_marginTop="15dp" />
+
+
+
+</LinearLayout>
