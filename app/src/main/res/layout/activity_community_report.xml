@@ -1,10 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommunityReportActivity">
+    android:background="#F5F5F5">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#0B22B6">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="Logo"
+                android:src="@drawable/msafe" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Community Report"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Map Section -->
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
+        <!-- Input Fields Section -->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Location:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/input_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Location Name"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Name of Disaster:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/input_name_disaster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Disaster Name"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Time:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/input_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Time"
+
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Date:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/input_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Date"
+
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Contact Number:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/input_contact_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Contact Number"
+
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:textSize="14sp" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#2196F3"
+            android:text="Submit Report"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+</ScrollView>
