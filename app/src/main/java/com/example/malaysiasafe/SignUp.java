@@ -2,6 +2,8 @@ package com.example.malaysiasafe;
 
 import static android.content.ContentValues.TAG;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -121,3 +123,4 @@ public class SignUp extends AppCompatActivity {
         });
     }
 }
+
