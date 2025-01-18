@@ -74,11 +74,9 @@ public class EvacuationRouteActivity extends AppCompatActivity implements OnMapR
                 Toast.makeText(EvacuationRouteActivity.this, "Please find your location first", Toast.LENGTH_SHORT).show();
             }
         });
-
         // Fetch evacuation centers from Firebase
         fetchEvacuationCentersFromFirebase();
     }
-
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
         this.googleMap = map;
@@ -92,7 +90,6 @@ public class EvacuationRouteActivity extends AppCompatActivity implements OnMapR
 
         googleMap.setMyLocationEnabled(true);
     }
-
     private void fetchEvacuationCentersFromFirebase() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://malaysiasafe-4daeb-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("EvacuationCentre");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

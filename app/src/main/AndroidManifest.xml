@@ -31,13 +31,20 @@
         <activity
             android:name=".EmergencyServiceActivity"
             android:exported="false" />
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDDDT9hf_3F7hXwHGEsd8FQOyG-dGFzXEU" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

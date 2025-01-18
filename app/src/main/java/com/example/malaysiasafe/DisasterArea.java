@@ -19,4 +19,16 @@ public class DisasterArea {
         return new LatLng(latitude, longitude);
     }
 
+    public String getDisasterType() {
+        return disasterType;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+
+    }
 }

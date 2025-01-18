@@ -1,6 +1,5 @@
 package com.example.malaysiasafe;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -32,36 +31,40 @@ public class DisasterProneAreaActivity extends AppCompatActivity implements OnMa
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Disaster-prone areas in Malaysia
-        List<DisasterArea> disasterAreas = Arrays.asList(
-                new DisasterArea("Kuala Lumpur", 3.139, 101.6869, "Flood"),
-                new DisasterArea("Penang", 5.4164, 100.3327, "Landslide"),
-                new DisasterArea("Johor Bahru", 1.4927, 103.7414, "Flood"),
-                new DisasterArea("Pekan", 3.4991, 103.3860, "Flood"),
-                new DisasterArea("Kota Kinabalu", 5.9804, 116.0735, "Earthquake")
+        // Disaster-prone areas data
+        List<Object[]> disasterAreas = Arrays.asList(
+                new Object[] {"Kuala Lumpur", 3.139, 101.6869, "Flood"},
+                new Object[] {"Penang", 5.4164, 100.3327, "Landslide"},
+                new Object[] {"Johor Bahru", 1.4927, 103.7414, "Flood"},
+                new Object[] {"Pekan", 3.4991, 103.3860, "Flood"},
+                new Object[] {"Kota Kinabalu", 5.9804, 116.0735, "Earthquake"}
         );
 
         // Add markers and highlight areas
-        for (DisasterArea area : disasterAreas) {
-            LatLng location = new LatLng(area.latitude, area.longitude);
+        for (Object[] area : disasterAreas) {
+            String areaName = (String) area[0];
+            double latitude = (double) area[1];
+            double longitude = (double) area[2];
+            String disasterType = (String) area[3];
+
+            LatLng location = new LatLng(latitude, longitude);
             mMap.addMarker(new MarkerOptions()
                     .position(location)
-                    .title(area.name)
-                    .snippet("Disaster Type: " + area.disasterType));
+                    .title(areaName)
+                    .snippet("Disaster Type: " + disasterType));
 
             // Add a circle to highlight the area
             mMap.addCircle(new CircleOptions()
                     .center(location)
                     .radius(10000) // Radius in meters
-                    .strokeColor(getColorForDisaster(area.disasterType))
-                    .fillColor(getColorForDisaster(area.disasterType, true))
+                    .strokeColor(getColorForDisaster(disasterType))
+                    .fillColor(getColorForDisaster(disasterType, true))
                     .strokeWidth(2f));
         }
 
@@ -87,6 +90,4 @@ public class DisasterProneAreaActivity extends AppCompatActivity implements OnMa
         int color = getColorForDisaster(disasterType);
         return isFill ? Color.argb(50, Color.red(color), Color.green(color), Color.blue(color)) : color;
     }
-
-
 }
