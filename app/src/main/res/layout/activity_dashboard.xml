@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/dashboard_banner" />
+            android:src="@drawable/background" />
 
         <LinearLayout
             android:id="@+id/profile_section"
@@ -54,13 +54,13 @@
         app:layout_constraintTop_toBottomOf="@id/banner_with_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="1dp">
 
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="295dp" />
     </FrameLayout>
 
     <!-- Alerts Section -->
@@ -117,37 +117,37 @@
 
             <Button
                 android:id="@+id/btn_emergency_service"
-                android:layout_width="160dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0939EC"
-                android:text="emergency service"
-                android:drawableLeft="@drawable/baseline_call_24"/>
+                android:backgroundTint="#0467AA"
+                android:drawableLeft="@drawable/baseline_call_24"
+                android:text="Emergency Services" />
 
             <Button
                 android:id="@+id/btn_community_report"
-                android:layout_width="160dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:backgroundTint="#0939EC"
-                android:text="community report"
-                android:drawableLeft="@drawable/baseline_comment_24"/>
+                android:backgroundTint="#0467AA"
+                android:drawableLeft="@drawable/baseline_comment_24"
+                android:text="Community Report Page" />
 
             <Button
                 android:id="@+id/btn_safety_info"
-                android:layout_width="160dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0939EC"
-                android:text="download safety info"
-                android:drawableLeft="@drawable/baseline_arrow_circle_down_24"/>
+                android:backgroundTint="#0467AA"
+                android:drawableLeft="@drawable/baseline_arrow_circle_down_24"
+                android:text="Download Safety information" />
 
             <Button
                 android:id="@+id/btn_disaster_area"
-                android:layout_width="160dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:backgroundTint="#0939EC"
-                android:text="disaster prone area"
-                android:drawableLeft="@drawable/baseline_add_location_24"/>
+                android:backgroundTint="#0467AA"
+                android:drawableLeft="@drawable/baseline_add_location_24"
+                android:text="Disaster Prone Area" />
 
         </GridLayout>
 
