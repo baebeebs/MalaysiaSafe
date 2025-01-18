@@ -39,7 +39,7 @@ public class CommunityReportActivity extends AppCompatActivity implements OnMapR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.community_report);
+        setContentView(R.layout.activity_community_report);
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
