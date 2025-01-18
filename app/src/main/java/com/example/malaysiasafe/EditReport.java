@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class EditReportActivity extends AppCompatActivity {
+public class EditReport extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference disasterRef;
@@ -50,10 +50,10 @@ public class EditReportActivity extends AppCompatActivity {
             disasterRef.child(disasterKey).child("contactNumber").setValue(contactNumberInput.getText().toString())
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(EditReportActivity.this, "Report Updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditReport.this, "Report Updated", Toast.LENGTH_SHORT).show();
                             finish(); // Close activity
                         } else {
-                            Toast.makeText(EditReportActivity.this, "Failed to update report", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditReport.this, "Failed to update report", Toast.LENGTH_SHORT).show();
                         }
                     });
         }

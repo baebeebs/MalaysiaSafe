@@ -105,7 +105,7 @@ public class DisasterProneAreaActivity extends AppCompatActivity implements OnMa
             // Add a circle to highlight the area
             mMap.addCircle(new CircleOptions()
                     .center(location)
-                    .radius(1000) // Radius in meters
+                    .radius(5000) // Radius in meters
                     .strokeColor(getColorForDisaster(disasterType))
                     .fillColor(getColorForDisaster(disasterType, true))
                     .strokeWidth(2f));

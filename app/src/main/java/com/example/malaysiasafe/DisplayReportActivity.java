@@ -85,7 +85,7 @@ public class DisplayReportActivity extends AppCompatActivity {
             if (disasterKey == null || disasterKey.isEmpty()) {
                 Toast.makeText(this, "Cannot edit: DisasterKey is null or invalid", Toast.LENGTH_SHORT).show();
             } else {
-                Intent editIntent = new Intent(DisplayReportActivity.this, EditReportActivity.class);
+                Intent editIntent = new Intent(DisplayReportActivity.this, EditReport.class);
                 editIntent.putExtra("disasterKey", disasterKey);
                 startActivity(editIntent);
             }
