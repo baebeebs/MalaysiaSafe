@@ -14,6 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -121,6 +126,60 @@ public class SignUp extends AppCompatActivity {
                         });
             }
         });
+          // Initialize SensorManager and Proximity Sensor
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+        // Initialize SensorEventListener
+        proximitySensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+                    if (event.values[0] < proximitySensor.getMaximumRange()) {
+                        // Phone is close to the user (face/body detected)
+                        disableInputs(); // Disable input fields
+                    } else {
+                        // Phone is away from the user
+                        enableInputs(); // Enable input fields
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+                // No implementation needed
+            }
+        };
+
+        // Register the proximity sensor listener
+        sensorManager.registerListener(proximitySensorListener, proximitySensor, SensorManager.SENSOR_DELAY_UI);
     }
+
+    // Disable input fields and sign-up button
+    private void disableInputs() {
+        username.setEnabled(false);
+        password.setEnabled(false);
+        email.setEnabled(false);
+        signUpButton.setEnabled(false);
+        Toast.makeText(SignUp.this, "Please hold the phone steady to continue", Toast.LENGTH_SHORT).show();
+    }
+
+    // Enable input fields and sign-up button
+    private void enableInputs() {
+        username.setEnabled(true);
+        password.setEnabled(true);
+        email.setEnabled(true);
+        signUpButton.setEnabled(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister the proximity sensor listener
+        if (sensorManager != null) {
+            sensorManager.unregisterListener(proximitySensorListener);
+        }
+    }
+    
 }
 
